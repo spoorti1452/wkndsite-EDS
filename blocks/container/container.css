@@ -1,0 +1,106 @@
+/* Layout Constraints */
+.page-align{
+  align-items:flex-start;
+}
+ 
+.container-wrapper {
+  display: flex !important;
+  flex-wrap: wrap; /* Allows stacking for 768px and 425px */
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.container {
+  width: 80%;
+  margin-left: 14%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* The Darker Grey Box */
+.container .definition-section {
+  background-color: #eeeeee !important; 
+  padding: 40px 50px !important;
+  margin: 48px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Kill white boxes */
+.container .definition-section pre,
+.container .definition-section code,
+.container .definition-section div {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: inherit !important;
+}
+
+.container .def-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #1a1a1a;
+}
+
+.container .def-desc {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  position: relative;
+  padding-bottom: 20px; 
+}
+
+.container .def-desc::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 80px; height: 5px;
+  background-color: #f7d61b;
+}
+
+.container .pos-italic {
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic !important;
+  font-size: 1.3rem !important;
+  margin-top: 25px !important;
+  display: block;
+}
+
+.container p:not([class*="def-"]):not(.pos-italic) {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 25px;
+}
+
+/* --- RESPONSIVE STACKING (Tablet/Mobile) --- */
+@media (width <= 1024px) {
+ .container {
+  width: 90%;
+  margin-left: 5%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+}
+@media (width <= 768px) {
+ .container {
+  width: 80%;
+  margin-left: 5%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+}
+@media (width <= 600px){
+  .container {
+  width: 80%;
+  margin-left: 5%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+}

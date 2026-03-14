@@ -1,0 +1,18 @@
+.image-wrapper {
+  /* Reduce width to 70% to leave breathing room on the sides */
+  width: 90%;
+
+  /* Set a reasonable maximum size for large monitors */
+  max-width: 900px; 
+
+  /* Keeps the block centered horizontally */
+  margin: 2rem auto;
+
+  display: block;
+}
+
+.image-wrapper img {
+  /* The image will now fill 100% of the 70% container */
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,165 @@
+/* --- BASE STYLES (Your Original Code) --- */
+
+.travelstory-container,
+.travelstory-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px 0; 
+}
+
+.travelstory {
+  width: 60%;
+  padding-left: 5%; 
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.travelstory h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin: 0 0 10px 0;
+  font-weight: 500;
+  color: #222;
+}
+
+.travelstory h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: #f7d61b;
+  margin-top: 8px;
+}
+
+.travelstory-image {
+  margin: 12px 0;
+  width: 100%; 
+  max-width: 800px; 
+}
+
+.travelstory-image img {
+  width: 100%; 
+  height: auto;
+  display: block;
+}
+
+.travelstory-text {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8; 
+  letter-spacing: 0.015em;
+  word-spacing: 0.02em;
+  color: #333333;
+  text-align: justify; 
+  text-align-last: left; 
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+/* --- FEATURE VARIATION --- */
+
+.travelstory-container.feature-container,
+.travelstory-wrapper:has(.travelstory.feature) {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.travelstory.feature {
+  width: 60%;
+  margin-right: 400px; /* Note: This will be overridden by media queries below */
+}
+
+.travelstory.feature h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #1a1a1a;
+  margin: 0 !important;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.travelstory.feature h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  background-color: #f7d61b;
+  display: block;
+  margin-top: 0;
+}
+
+.travelstory.feature .travelstory-image p,
+.travelstory.feature .travelstory-text p {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  letter-spacing: 0.015em;
+  word-spacing: 0.02em;
+  color: #333333;
+  text-align: justify; 
+  text-align-last: left; 
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* Laptops and Small Desktops */
+@media (max-width: 1280px) {
+  .travelstory.feature {
+    margin-right: 5%; /* Reduces the huge gap on the right */
+    width: 70%;
+  }
+}
+
+/* Tablets (Portrait & Landscape) */
+@media (max-width: 992px) {
+  .travelstory-container,
+  .travelstory-wrapper {
+    padding: 15px 30px; /* Adds padding so text doesn't hit screen edges */
+  }
+
+  .travelstory, 
+  .travelstory.feature {
+    width: 90%; /* Content takes up more screen space */
+    padding-left: 0;
+    margin-right: 0;
+  }
+  
+  .travelstory h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+  .travelstory-container,
+  .travelstory-wrapper {
+    padding: 10px 20px;
+  }
+
+  .travelstory, 
+  .travelstory.feature {
+    width: 100%;
+  }
+
+  .travelstory h2 {
+    font-size: 1.8rem;
+  }
+
+  .travelstory-text,
+  .travelstory.feature .travelstory-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify; 
+   
+    text-align-last: left;
+  }
+}

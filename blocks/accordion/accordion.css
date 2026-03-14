@@ -1,0 +1,86 @@
+/* 1. Remove spacing from the Section and Block containers */
+.accordion-container,
+.accordion-wrapper {
+  max-width: 950px;         /* Tight width to match target image */
+  margin: 80px;
+  padding-top: 0 !important;
+}
+
+.accordion {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* 2. Individual Rows */
+.accordion > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. The Question Button */
+.accordion-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* Vertical spacing */
+  padding: 16px 0; 
+  margin: 0;
+  
+  /* Visuals */
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e0e0e0; /* Thin gray line */
+  
+  /* Typography */
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* This is the key: Removes top padding from the very first question */
+.accordion > div:first-child .accordion-title {
+  padding-top: 0;
+}
+
+/* 4. The Plus/Minus Icon */
+.accordion-title::after {
+  content: "+";
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1;
+  color: #000;
+  margin-left: 15px;
+}
+
+.accordion-title.active::after {
+  content: "\2212"; /* Proper Unicode Minus sign */
+}
+
+/* 5. The Answer Content Area */
+.accordion-content {
+  display: none;
+  padding: 12px 0 24px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Adjustments for the previous paragraph to close the gap further */
+.section > div > p:last-of-type {
+  margin-bottom: 10px; /* Reduces the gap from the text above */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .accordion-wrapper {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}

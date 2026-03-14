@@ -1,0 +1,77 @@
+/* Sidebar - Absolute for Laptop (1440px/1024px) */
+.page-align{
+  display: flex;
+}
+
+.aside-wrapper {
+  position: absolute;
+  right: 40px;
+  top: 920px;   
+  width: 300px;
+  z-index: 2;
+}
+
+.aside .aside-heading {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 0 0 38px 0;   
+}
+
+.aside .aside-item {
+  border-left: 5px solid #ebebeb; 
+  padding: 15px 20px;
+  margin-bottom: 20px; 
+  transition: background 0.3s ease;
+}
+
+.aside .aside-item:first-of-type {
+  background: #ffea00;
+  border-left: 5px solid #202020;
+}
+
+.aside .aside-item p:first-child {
+  font-size: 15px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.aside .aside-item p:last-child {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #7a7a7a;
+}
+
+/* --- LAPTOP FIX (1024px to 1440px) --- */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .aside-wrapper {
+    position: relative; 
+    top: 50px; 
+    right: auto;
+    width: 30%; 
+    margin-left: 40px;
+  }
+}
+
+@media(max-width <= 768){
+   .aside-wrapper {
+    position: relative; 
+    top: 40px; 
+    right: auto;
+    width: 30%; 
+    margin-left: 40px;
+  }
+}
+
+/* --- TABLET (768px) & MOBILE (425px) --- */
+@media (max-width: 900px) {
+  .aside-wrapper {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 90%;
+    margin: 40px auto;
+  }
+  
+  .aside .aside-item p:first-child { font-size: 13px; }
+}
