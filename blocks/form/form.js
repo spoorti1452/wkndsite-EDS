@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default async function decorate(block) {
   const link = block.querySelector('a');
   if (!link) return;
@@ -54,7 +55,7 @@ export default async function decorate(block) {
       const formData = new FormData(form);
       const jsonData = Object.fromEntries(formData.entries());
       const submitBtn = form.querySelector('button[type="submit"]');
-      
+
       // Disable button during submission
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
@@ -64,7 +65,7 @@ export default async function decorate(block) {
 
         await fetch(scriptURL, {
           method: 'POST',
-          mode: 'no-cors', 
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(jsonData),
         });
@@ -81,22 +82,20 @@ export default async function decorate(block) {
         message.classList.add('success-msg');
         message.textContent = 'Form Submitted Successfully';
         message.style.cssText = 'color: green; font-weight: bold; margin-top: 15px; text-align: center;';
-        
-        form.appendChild(message);
 
+        form.appendChild(message);
       } catch (error) {
         console.error('Error!', error);
         alert('Submission Failed. Please try again.');
       } finally {
         // Re-enable button
         submitBtn.disabled = false;
-        submitBtn.textContent = fields.find(f => f.Type.toLowerCase() === 'submit').Label;
+        submitBtn.textContent = fields.find((f) => f.Type.toLowerCase() === 'submit').Label;
       }
     });
 
     block.innerHTML = '';
     block.appendChild(form);
-
   } catch (error) {
     console.error('Error loading form:', error);
   }

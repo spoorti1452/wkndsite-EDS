@@ -1,325 +1,87 @@
-/* =========================
-   WKND HEADER - BASE & DESKTOP
-========================= */
-:root {
-  --wknd-topbar-height: 35px;
-  --wknd-header-height: 100px;
-  --wknd-yellow: #ffe600;
-  --wknd-dark: #1f1f1f;
-}
+/* header.css */
 
-body {
-  padding-top: calc(var(--wknd-topbar-height) + var(--wknd-header-height));
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: #f5f5f5; /* Light Gray Nav Background */
-  height: 130px;
-  box-sizing: border-box;
-}
-
-/* THE BLACK TOP BAR */
-header nav::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--wknd-topbar-height);
-  background: var(--wknd-dark);
-}
-
-header nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: calc(var(--wknd-topbar-height) + var(--wknd-header-height));
-  padding: var(--wknd-topbar-height) 32px 0;
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-/* =========================
-   TOP BAR LINKS (HOME & SIGN IN)
-========================= */
-.nav-topbar-links {
-  position: absolute;
-  top: 0;
-  right: 32px;
-  height: var(--wknd-topbar-height);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  z-index: 10;
-}
-
-.nav-topbar-links a, 
-#header-signin-button {
-  color: #fff;
-  background: none;
-  border: none;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  padding: 0;
-}
-
-/* =========================
-   MAIN NAVIGATION & TOOLS
-========================= */
-header .nav-brand img {
-  height: 45px;
-  width: auto;
-  display: block;
-}
-
-header .nav-sections .default-content-wrapper ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  gap: 10px;
-}
-
-header .nav-sections a {
-  display: flex;
-  align-items: center;
-  height: 45px;
-  padding: 0 15px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #333;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-header .nav-sections a:hover {
-  background: var(--wknd-yellow);
-}
-
-header .nav-tools a {
-  display: flex;
-  align-items: center;
-  background: #ececec;
-  height: 45px;
-  padding: 0 15px;
-  text-decoration: none;
-  width: 180px;
-  box-sizing: border-box;
-}
-
-/* =========================
-   TABLET & MOBILE RESPONSIVE
-========================= */
-.nav-hamburger {
-  display: none;
-  cursor: pointer;
-}
-
-.hamburger-icon span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: #333;
-  margin: 6px 0;
-  transition: 0.3s;
-}
-
-@media (max-width: 1024px) {
-  /* CHANGE NAV TO GRID TO FORCE THE LAYOUT SEEN IN IMAGE 2 */
-  header nav {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr; /* Hamburger | Logo | Tools */
-    align-items: center;
-    padding: var(--wknd-topbar-height) 20px 0;
-  }
-
-  /* --- SPECIFIC MOBILE LAYOUT ORDER --- */
-  .nav-hamburger {
-    display: block;
-    grid-column: 1; /* Left */
-    order: 1;
-    z-index: 1002;
-  }
-
-  header .nav-brand {
-    grid-column: 2; /* Center */
-    order: 2;
-    margin: 0 auto; /* Center logo image */
-  }
-
-  header .nav-brand img {
-    height: 32px; /* Smaller Logo on Mobile */
-  }
-
-  header .nav-tools {
-    grid-column: 3; /* Right */
-    order: 3;
+/* Core Navigation Container */
+nav {
     display: flex;
-    justify-content: flex-end; /* Push search to right */
-  }
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: #ffffff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    border-bottom: 1px solid #eaeaea;
+}
 
-  header .nav-tools a {
-    width: 45px; /* Square search icon box */
-    justify-content: center;
-  }
+/* 1. Logo Section (nav-brand) */
+.nav-brand .picture img {
+    height: 40px; /* Adjust based on your logo's aspect ratio */
+    width: auto;
+    display: block;
+}
 
-  /* SIDEBAR TRANSFORMATION */
-  header .nav-sections {
-    position: fixed;
-    top: 0;
-    left: -100%; /* Hidden by default */
-    width: 280px; /* Thinner Sidebar */
-    height: 100vh;
-    background: #fff;
-    transition: left 0.3s ease-in-out;
-    z-index: 1001;
-    padding-top: 60px;
-    box-sizing: border-box;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  }
-
-  /* Toggle Sidebar when open */
-  nav[aria-expanded="true"] .nav-sections {
-    left: 0;
-  }
-
-  header .nav-sections .default-content-wrapper ul {
-    flex-direction: column;
-    gap: 0;
+/* 2. Navigation Links (nav-sections) */
+.nav-sections ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
     padding: 0;
-  }
-
-  header .nav-sections a {
-    font-size: 16px;
-    padding: 20px 25px;
-    width: 100%;
-    border-bottom: 1px solid #eee;
-    height: auto;
-    box-sizing: border-box;
-    justify-content: flex-start;
-  }
-
-  /* Hamburger to X Animation */
-  nav[aria-expanded="true"] .hamburger-icon span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  nav[aria-expanded="true"] .hamburger-icon span:nth-child(2) { opacity: 0; }
-  nav[aria-expanded="true"] .hamburger-icon span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    gap: 0; /* Gaps are handled by padding on the <a> for better hit-areas */
 }
 
-/* =========================
-   SIGN IN MODAL (RESPONSIVE)
-========================= */
-.signin-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
+.nav-sections ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    display: block;
+    transition: background-color 0.2s;
 }
 
-.signin-overlay.active { display: flex; }
-
-.signin-modal {
-  background: #1f1f1f;
-  color: #fff;
-  padding: 60px;
-  width: 90%; /* Scale based on viewport width */
-  max-width: 450px; /* Compact width */
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* Yellow Highlight for "Magazine" (Matching the image) */
+.nav-sections ul li:first-child a {
+    background-color: #fff000;
 }
 
-.signin-title {
-  font-size: 42px;
-  margin: 0;
-  font-family: Georgia, serif;
-  color: #555; /* Dimmed text as seen in reference images */
+.nav-sections ul li a:hover {
+    background-color: #f0f0f0;
 }
 
-.yellow-line {
-  height: 4px;
-  background: var(--wknd-yellow);
-  width: 60px;
-  margin: 20px 0;
+/* 3. Search Tool (nav-tools) */
+.nav-tools {
+    background-color: #f4f4f4;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    min-width: 150px;
 }
 
-.welcome-text {
-  font-size: 24px;
-  margin-bottom: 35px;
-  font-family: Georgia, serif;
+.nav-tools a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    text-transform: uppercase;
+    gap: 10px;
 }
 
-.signin-modal input {
-  width: 100%;
-  background: #2a2a2a;
-  border: 1px solid #444;
-  padding: 15px;
-  margin-bottom: 15px;
-  color: #fff;
-  font-size: 14px;
-  box-sizing: border-box;
+.nav-tools .icon-search img {
+    width: 18px;
+    height: 18px;
 }
 
-.signin-modal input::placeholder {
-  color: #888;
+/* Mobile Hamburger (Hidden on Desktop) */
+.nav-hamburger {
+    display: none;
 }
 
-.forgot-password {
-  display: block;
-  color: #357abd;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 700;
-  margin: 10px 0 35px 0;
-  text-transform: uppercase;
-}
-
-.signin-submit {
-  background: var(--wknd-yellow);
-  border: none;
-  padding: 15px 40px;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  text-transform: uppercase;
-  color: #000;
-}
-
-.close-modal {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-/* RESPONSIVE TWEAKS FOR MODAL (REDUCE SIZE) */
-@media (max-width: 768px) {
-  .signin-modal {
-    padding: 30px 20px; /* Reduced padding */
-    max-width: 350px; /* Much smaller width on phones */
-  }
-
-  .signin-title {
-    font-size: 30px;
-  }
-
-  .welcome-text {
-    font-size: 18px;
-    margin-bottom: 25px;
-  }
+@media (max-width: 900px) {
+    .nav-sections {
+        display: none; /* Add JS logic to toggle this */
+    }
+    .nav-hamburger {
+        display: block;
+        cursor: pointer;
+    }
 }

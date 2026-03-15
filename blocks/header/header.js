@@ -34,7 +34,7 @@ export default async function decorate(block) {
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = '<div class="hamburger-icon"><span></span><span></span><span></span></div>';
-  
+
   hamburger.addEventListener('click', () => {
     const isExpanded = nav.getAttribute('aria-expanded') === 'true';
     nav.setAttribute('aria-expanded', !isExpanded);
