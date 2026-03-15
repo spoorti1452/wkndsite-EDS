@@ -82,7 +82,7 @@ export default function decorate(block) {
  
     dots.append(dot);
   });
- 
+  console.log();
   navContainer.append(dots, arrows);
   block.append(navContainer);
  
