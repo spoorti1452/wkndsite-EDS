@@ -80,44 +80,37 @@ header .nav-sections ul li a:hover {
 
 
 /* --- SEARCH BOX (Icon + Wrapper) - Visible in all views --- */
-header .nav-tools { 
-  display: flex; 
-  justify-content: flex-end; 
-  padding-top: 18px; 
-}
-
-header .search-wrapper {
-  display: flex; 
+/* 1. Target ONLY the search link using the href attribute */
+.default-content-wrapper a[href*="search"] {
+  display: inline-flex;
   align-items: center;
-  background-color: var(--search-bg);
-  height: 50px; 
-  width: 220px; 
-  padding: 0 15px;
-  box-sizing: border-box;
+  background-color: lightgrey; 
+  padding: 8px 16px;
+  text-decoration: none;
+  border: none;
 }
 
-header .search-icon {
-  width: 20px; 
-  height: 20px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
-  background-repeat: no-repeat; 
-  background-size: contain; 
-  margin-right: 10px;
-  flex-shrink: 0;
-  display: block !important; /* Ensure it stays visible */
+/* 2. Add the "SEARCH" text ONLY to that specific link */
+.default-content-wrapper a[href*="search"]::after {
+  content: "SEARCH";
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #557991;
+  margin-left: 10px; /* Space between icon and text */
+  letter-spacing: 1px;
 }
 
-header .search-wrapper input {
-  border: 0; 
-  background: transparent; 
-  outline: 0;
-  font-weight: bold; 
-  font-size: 14px; 
-  text-transform: uppercase; 
-  color: #777;
-  width: 100%;
+/* 3. Ensure the icon inside it is sized correctly */
+.default-content-wrapper a[href*="search"] .icon-search img {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
+/* 4. Reset other links to prevent the "SEARCH" text from appearing on them */
+.default-content-wrapper a:not([href*="search"])::after {
+  content: none !important;
+}
 header .nav-hamburger { display: none; }
 
 /* ========================================

@@ -39,7 +39,7 @@ export default async function decorate(block) {
     nav.setAttribute('aria-expanded', 'true');
     document.body.classList.add('nav-open');
   });
-  
+
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) navBrand.prepend(hamburger);
 
@@ -49,23 +49,12 @@ export default async function decorate(block) {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('nav-close-wrapper');
     closeBtnWrapper.innerHTML = '<button type="button" class="close-toggle">&times;</button>';
-    
+
     closeBtnWrapper.querySelector('.close-toggle').addEventListener('click', () => {
       nav.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('nav-open');
     });
     navSections.prepend(closeBtnWrapper);
-  }
-
-  // --- SEARCH BAR (The Box Style) ---
-  const navTools = nav.querySelector('.nav-tools');
-  if (navTools) {
-    navTools.innerHTML = `
-      <div class="search-wrapper">
-        <span class="search-icon"></span>
-        <input type="text" placeholder="SEARCH">
-      </div>
-    `;
   }
 
   // --- SIGN IN MODAL ---
