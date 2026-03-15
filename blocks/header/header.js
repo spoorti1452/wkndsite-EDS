@@ -30,20 +30,34 @@ export default async function decorate(block) {
   `;
   nav.prepend(topBarLinks);
 
-  // --- HAMBURGER ---
+  // --- HAMBURGER (Open Button) ---
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = '<div class="hamburger-icon"><span></span><span></span><span></span></div>';
+  hamburger.innerHTML = '<button type="button" class="hamburger-toggle"><span></span><span></span><span></span></button>';
 
-  hamburger.addEventListener('click', () => {
-    const isExpanded = nav.getAttribute('aria-expanded') === 'true';
-    nav.setAttribute('aria-expanded', !isExpanded);
+  hamburger.querySelector('.hamburger-toggle').addEventListener('click', () => {
+    nav.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-open');
   });
   
-  // Place hamburger before brand for the 1-row layout
-  nav.insertBefore(hamburger, nav.querySelector('.nav-brand'));
+  const navBrand = nav.querySelector('.nav-brand');
+  if (navBrand) navBrand.prepend(hamburger);
 
-  // --- SEARCH BAR ---
+  // --- CLOSE BUTTON (Inside Mobile Menu) ---
+  const navSections = nav.querySelector('.nav-sections');
+  if (navSections) {
+    const closeBtnWrapper = document.createElement('div');
+    closeBtnWrapper.classList.add('nav-close-wrapper');
+    closeBtnWrapper.innerHTML = '<button type="button" class="close-toggle">&times;</button>';
+    
+    closeBtnWrapper.querySelector('.close-toggle').addEventListener('click', () => {
+      nav.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    });
+    navSections.prepend(closeBtnWrapper);
+  }
+
+  // --- SEARCH BAR (The Box Style) ---
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
     navTools.innerHTML = `
