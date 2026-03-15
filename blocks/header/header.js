@@ -21,12 +21,12 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  // --- TOP BAR (HOME & SIGN IN) ---
+  // --- TOP BAR ---
   const topBarLinks = document.createElement('div');
   topBarLinks.classList.add('nav-topbar-links');
   topBarLinks.innerHTML = `
-    <a href="http://localhost:3000/us/en" class="top-link">HOME</a>
     <button id="header-signin-button" class="top-link">SIGN IN</button>
+    <a href="/" class="top-link">HOME</a>
   `;
   nav.prepend(topBarLinks);
 
@@ -39,7 +39,20 @@ export default async function decorate(block) {
     const isExpanded = nav.getAttribute('aria-expanded') === 'true';
     nav.setAttribute('aria-expanded', !isExpanded);
   });
-  nav.insertBefore(hamburger, nav.querySelector('.nav-sections'));
+  
+  // Place hamburger before brand for the 1-row layout
+  nav.insertBefore(hamburger, nav.querySelector('.nav-brand'));
+
+  // --- SEARCH BAR ---
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    navTools.innerHTML = `
+      <div class="search-wrapper">
+        <span class="search-icon"></span>
+        <input type="text" placeholder="SEARCH">
+      </div>
+    `;
+  }
 
   // --- SIGN IN MODAL ---
   const modalOverlay = document.createElement('div');
@@ -50,7 +63,7 @@ export default async function decorate(block) {
       <h2 class="signin-title">Sign In</h2>
       <div class="yellow-line"></div>
       <p class="welcome-text">Welcome Back</p>
-      <form novalidate>
+      <form>
         <input type="text" placeholder="USERNAME">
         <input type="password" placeholder="PASSWORD">
         <a href="#" class="forgot-link">FORGOT YOUR PASSWORD?</a>
@@ -60,16 +73,11 @@ export default async function decorate(block) {
   `;
   document.body.appendChild(modalOverlay);
 
-  // Listeners (Wrapped in checks to avoid the "null" error)
   const signInBtn = nav.querySelector('#header-signin-button');
-  if (signInBtn) {
-    signInBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
-  }
+  if (signInBtn) signInBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
 
   const closeBtn = modalOverlay.querySelector('.close-modal');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
-  }
+  if (closeBtn) closeBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
