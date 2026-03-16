@@ -1,4 +1,4 @@
-/* eslint disable */
+/* eslint-disable */
 export default function decorate(block) {
   const slides = [...block.children];
   if (slides.length === 0) return;
