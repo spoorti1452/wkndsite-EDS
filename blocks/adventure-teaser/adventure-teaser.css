@@ -114,6 +114,7 @@ body {
 
   .adventure-teaser-content p {
     font-size: 0.95rem;
+    text-align: justify;
   }
 
   /* Ensuring the button stays small on small phones */
