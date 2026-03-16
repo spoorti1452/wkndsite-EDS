@@ -17,14 +17,14 @@ export default function decorate(block) {
   breadcrumbSegments.forEach((segment, index) => {
     const li = document.createElement('li');
     const link = document.createElement('a');
-    
+
     // Set the href: magazine is basePath/magazine, slug is basePath/magazine/slug
     const currentPathSegments = breadcrumbSegments.slice(0, index + 1);
     link.href = `${basePath}/${currentPathSegments.join('/')}`;
 
     // Formatting Logic
     let displayText = segment.replace(/-/g, ' ');
-    
+
     // Force uppercase for 'magazine' if it's the first breadcrumb item
     if (index === 0 && segment.toLowerCase() === 'magazine') {
       displayText = 'MAGAZINE';

@@ -1,20 +1,6 @@
-/*export default function decorate(block) {
-  const rows = [...block.children];
-
-  rows.forEach((row, index) => {
-    if (index === 0) {
-      // The "aside" label/header from the table
-      row.classList.add('aside-heading');
-    } else {
-      // The content rows
-      row.classList.add('aside-item');
-    }
-  });
-}
-*/
 export default function decorate(block) {
   const rows = [...block.children];
-  
+
   rows.forEach((row, index) => {
     if (index === 0) {
       row.classList.add('aside-header');

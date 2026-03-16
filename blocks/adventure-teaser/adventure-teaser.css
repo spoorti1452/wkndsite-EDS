@@ -76,14 +76,50 @@ body {
   margin-left: 0; 
 }
 
-/* 7. Mobile Adjustments */
+/* 7. TABLET & MOBILE RESPONSIVE */
+@media (max-width: 1024px) {
+  .adventure-teaser-image img {
+    height: 300px; /* Adjust height for tablet */
+  }
+
+  .adventure-teaser-content {
+    width: 90%;
+    margin-top: -80px; /* Reduced overlap */
+    height: auto;      /* Prevents content clipping */
+    padding: 30px;
+  }
+
+  /* Force the button to only take up the space of its text */
+  .adventure-teaser-content a {
+    display: inline-block !important; 
+    width: auto !important;           
+    padding: 12px 30px;               
+    font-size: 0.8rem;
+  }
+}
+
 @media (max-width: 768px) {
   .adventure-teaser-image img {
-    height: 250px;
+    height: 220px; /* Smaller image for mobile phones */
   }
+
   .adventure-teaser-content {
-    width: 95%;
-    margin-top: -30px;
-    padding: 0 20px 30px;
+    margin-top: -40px; /* Even smaller overlap for small screens */
+    padding: 20px;
+  }
+
+  .adventure-teaser-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .adventure-teaser-content p {
+    font-size: 0.95rem;
+  }
+
+  /* Ensuring the button stays small on small phones */
+  .adventure-teaser-content a {
+    width: auto !important;
+    display: inline-block !important;
+    padding: 10px 25px;
   }
 }

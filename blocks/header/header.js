@@ -21,25 +21,41 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  // --- TOP BAR (HOME & SIGN IN) ---
+  // --- TOP BAR ---
   const topBarLinks = document.createElement('div');
   topBarLinks.classList.add('nav-topbar-links');
   topBarLinks.innerHTML = `
-    <a href="http://localhost:3000/us/en" class="top-link">HOME</a>
     <button id="header-signin-button" class="top-link">SIGN IN</button>
+    <a href="/" class="top-link">HOME</a>
   `;
   nav.prepend(topBarLinks);
 
-  // --- HAMBURGER ---
+  // --- HAMBURGER (Open Button) ---
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = '<div class="hamburger-icon"><span></span><span></span><span></span></div>';
-  
-  hamburger.addEventListener('click', () => {
-    const isExpanded = nav.getAttribute('aria-expanded') === 'true';
-    nav.setAttribute('aria-expanded', !isExpanded);
+  hamburger.innerHTML = '<button type="button" class="hamburger-toggle"><span></span><span></span><span></span></button>';
+
+  hamburger.querySelector('.hamburger-toggle').addEventListener('click', () => {
+    nav.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-open');
   });
-  nav.insertBefore(hamburger, nav.querySelector('.nav-sections'));
+
+  const navBrand = nav.querySelector('.nav-brand');
+  if (navBrand) navBrand.prepend(hamburger);
+
+  // --- CLOSE BUTTON (Inside Mobile Menu) ---
+  const navSections = nav.querySelector('.nav-sections');
+  if (navSections) {
+    const closeBtnWrapper = document.createElement('div');
+    closeBtnWrapper.classList.add('nav-close-wrapper');
+    closeBtnWrapper.innerHTML = '<button type="button" class="close-toggle">&times;</button>';
+
+    closeBtnWrapper.querySelector('.close-toggle').addEventListener('click', () => {
+      nav.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    });
+    navSections.prepend(closeBtnWrapper);
+  }
 
   // --- SIGN IN MODAL ---
   const modalOverlay = document.createElement('div');
@@ -50,7 +66,7 @@ export default async function decorate(block) {
       <h2 class="signin-title">Sign In</h2>
       <div class="yellow-line"></div>
       <p class="welcome-text">Welcome Back</p>
-      <form novalidate>
+      <form>
         <input type="text" placeholder="USERNAME">
         <input type="password" placeholder="PASSWORD">
         <a href="#" class="forgot-link">FORGOT YOUR PASSWORD?</a>
@@ -60,16 +76,11 @@ export default async function decorate(block) {
   `;
   document.body.appendChild(modalOverlay);
 
-  // Listeners (Wrapped in checks to avoid the "null" error)
   const signInBtn = nav.querySelector('#header-signin-button');
-  if (signInBtn) {
-    signInBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
-  }
+  if (signInBtn) signInBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
 
   const closeBtn = modalOverlay.querySelector('.close-modal');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
-  }
+  if (closeBtn) closeBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';

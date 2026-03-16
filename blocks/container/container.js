@@ -3,16 +3,16 @@ export default function decorate(block) {
 
   rows.forEach((row) => {
     const textContent = row.textContent.toLowerCase();
-    
+
     if (textContent.includes('wanderlust')) {
       row.classList.add('definition-section');
-      
+
       // Get the inner div
       const contentHolder = row.querySelector(':scope > div');
-      
+
       // If Da.live wrapped it in <pre><code>, we extract the text to clean it
       const rawText = row.textContent.trim();
-      const lines = rawText.split('\n').filter(line => line.trim() !== '');
+      const lines = rawText.split('\n').filter((line) => line.trim() !== '');
 
       // Rebuild the structure purely for styling
       if (lines.length >= 3) {

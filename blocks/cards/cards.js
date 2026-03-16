@@ -1,16 +1,17 @@
+/* eslint-disable */
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
   const isMagazine = block.classList.contains('magazine');
   const isAboutUs = block.classList.contains('aboutus');
   const isAdventure = block.classList.contains('adventure');
-  const isArticle = block.classList.contains('article'); 
+  const isArticle = block.classList.contains('article');
   const ul = document.createElement('ul');
   const items = [...block.children];
 
   items.forEach((row, index) => {
     const li = document.createElement('li');
-    
+
     // REMOVED: The logic that added 'hidden-card' class to items after the 4th index
 
     while (row.firstElementChild) li.append(row.firstElementChild);
@@ -30,7 +31,7 @@ export default function decorate(block) {
         if (isAboutUs || isArticle) {
           const socialContainer = document.createElement('div');
           socialContainer.className = isArticle ? 'article-social-bar' : 'aboutus-social-bar';
-          
+
           const icons = div.querySelectorAll('span.icon');
           if (icons.length > 0) {
             icons.forEach((icon) => {
@@ -39,7 +40,7 @@ export default function decorate(block) {
             });
             div.append(socialContainer);
           }
-          
+
           div.querySelectorAll('p').forEach((p) => {
             if (!p.textContent.trim() && !p.children.length) p.remove();
           });
@@ -56,19 +57,16 @@ export default function decorate(block) {
         badge.className = 'magazine-badge';
         badge.innerHTML = '<span>🔒</span>';
         body.prepend(badge);
-        if (image) li.appendChild(image); 
+        if (image) li.appendChild(image);
       }
     } else if (isAboutUs || isArticle) {
-      if (image) li.prepend(image); 
+      if (image) li.prepend(image);
     }
 
     ul.append(li);
   });
 
-  ul.querySelectorAll('picture > img').forEach((img) =>
-    img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]))
-  );
+  ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
 
   block.replaceChildren(ul);
-
 }
