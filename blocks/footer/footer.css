@@ -48,6 +48,10 @@ footer .column > div > div:nth-child(2) p {
   text-transform: uppercase;
 }
 
+footer .column > div > div:nth-child(2) p a{
+  color: white;
+}
+
 /* Social Section */
 
 footer .column > div > div:nth-child(3) {
