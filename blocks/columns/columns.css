@@ -56,6 +56,7 @@
 .columns > div > div:last-child p {
   font-size: 15px; /* Slightly smaller for the tighter box */
   line-height: 1.6;
+  text-align: justify;
 }
  
 /* BUTTON STYLE */
