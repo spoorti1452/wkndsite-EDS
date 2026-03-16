@@ -33,7 +33,10 @@ export default async function decorate(block) {
   // --- HAMBURGER (Open Button) ---
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = '<button type="button" class="hamburger-toggle"><span></span><span></span><span></span></button>';
+  hamburger.innerHTML = `
+    <button type="button" class="hamburger-toggle" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>`;
 
   hamburger.querySelector('.hamburger-toggle').addEventListener('click', () => {
     nav.setAttribute('aria-expanded', 'true');
@@ -48,7 +51,9 @@ export default async function decorate(block) {
   if (navSections) {
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.classList.add('nav-close-wrapper');
-    closeBtnWrapper.innerHTML = '<button type="button" class="close-toggle">&times;</button>';
+    closeBtnWrapper.innerHTML = `
+      <button type="button" class="close-toggle" aria-label="Close navigation menu">&times;</button>
+    `;
 
     closeBtnWrapper.querySelector('.close-toggle').addEventListener('click', () => {
       nav.setAttribute('aria-expanded', 'false');
@@ -62,7 +67,7 @@ export default async function decorate(block) {
   modalOverlay.classList.add('signin-overlay');
   modalOverlay.innerHTML = `
     <div class="signin-modal">
-      <button class="close-modal">&times;</button>
+      <button class="close-modal" aria-label="Close sign in dialog">&times;</button>
       <h2 class="signin-title">Sign In</h2>
       <div class="yellow-line"></div>
       <p class="welcome-text">Welcome Back</p>
